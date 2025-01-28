@@ -1,13 +1,25 @@
 package com.danilov.sport_abonement_app.model;
 
 public class Account {
-    private final long id ;
-    private static long counter ;
+    private final long accountId;
+    private static long accountCounter;
 
-    private  final  double amount;
+    private double amount;
+
     public Account() {
         this.amount = 0;
-        this.id = counter++;
+        this.accountId = accountCounter++;
     }
 
+    public long getId() {
+        return accountId;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
 }
