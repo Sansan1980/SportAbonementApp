@@ -14,13 +14,13 @@ import static com.danilov.sport_abonement_app.validation.Validates.validatesNumb
 import static com.danilov.sport_abonement_app.validation.Validates.validatesString;
 import static java.lang.System.lineSeparator;
 
-@Service
+/*@Service
 public class EmployeeServiceImpl implements EmployeeService {
- /*   private final Employee employee;
+ *//*   private final Employee employee;
 
     public EmployeeServiceImpl(Employee employee) {
         this.employee = employee;
-    }*/
+    }*//*
     private static Map<String, Employee> employeesMap = new HashMap<>();
 
     public String addEmployee(Integer numberTelephone, String name, String surname) {
@@ -72,5 +72,5 @@ public class EmployeeServiceImpl implements EmployeeService {
         return "Значения :" + values + lineSeparator() +
                 "Ключи : " + keys;
 
-    }
-}
+    }*/
+//}

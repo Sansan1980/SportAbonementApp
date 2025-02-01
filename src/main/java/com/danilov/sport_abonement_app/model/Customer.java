@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Customer {
-    private final long costomerId ;
+    private final long customerId;
     private static long customerCounter;
     private Account accounCustomer;
     private final String name;
     private  final String surname;
-    private final int numberTelephone;
+    private final long numberTelephone;
     private List <Task> tasks;
 
-
-    public Customer(String name, String surname, int numberTelephone) {
-        this.costomerId = customerCounter++;
+    public Customer(String name, String surname, long numberTelephone) {
+        this.customerId = customerCounter++;
         this.accounCustomer = new Account();
         this.name = name;//не знаю как реализовывать добовление имени клиента потом по  желанию.
         this.surname = surname;//не знаю как реализовывать добовление имени клиента потом по желанию.
@@ -22,8 +21,8 @@ public class Customer {
         this.tasks = new ArrayList<Task>();
 
     }
-    public long getCostomerId() {
-        return costomerId;
+    public long getCustomerId() {
+        return customerId;
     }
 
     public Account getAccounCustomer() {
@@ -42,7 +41,7 @@ public class Customer {
         return surname;
     }
 
-    public int getNumberTelephone() {
+    public long getNumberTelephone() {
         return numberTelephone;
     }
 
@@ -52,6 +51,15 @@ public class Customer {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "costomerId=" + getCustomerId() +
+                ", accounCustomer=" + getAccounCustomer() +
+                ", name='" + getName() + '\'' +
+                ", surname='" + getSurname() + '\'' +
+                ", numberTelephone=" + getNumberTelephone() +'}';
     }
 
 }
