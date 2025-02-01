@@ -16,11 +16,11 @@ import static java.lang.System.lineSeparator;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final Employee employee;
+ /*   private final Employee employee;
 
     public EmployeeServiceImpl(Employee employee) {
         this.employee = employee;
-    }
+    }*/
     private static Map<String, Employee> employeesMap = new HashMap<>();
 
     public String addEmployee(Integer numberTelephone, String name, String surname) {
@@ -47,15 +47,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeesMap.get(key(name, surname));
     }
 
-
     public String deleteEmployee( String name, String surname) {
-        findEmployee(name,surname);
         //получитиь подтверждение и удалить
         if (!employeesMap.containsKey(key(name, surname))) {
             throw new EmployeeNotFoundException();
         }
         employeesMap.remove(key(name, surname));
-        return "Удалены  данные " + employee.getNumberTelephone() + name + " " + surname;
+        return "Удалены  данные "  + name + " " + surname;
 
     }
 
@@ -72,7 +70,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         Set<String> keys = employeesMap.keySet();
         Collection<Employee> values = employeesMap.values();
         return "Значения :" + values + lineSeparator() +
-                "Ключи : " + keys;  // непонимаю как вернуть на страницу браузера две строки на разных строках "значенbя-Employee" b "ключи-keys" ;
+                "Ключи : " + keys;
 
     }
 }
