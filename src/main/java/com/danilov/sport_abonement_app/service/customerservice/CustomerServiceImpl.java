@@ -1,5 +1,8 @@
 package com.danilov.sport_abonement_app.service.customerservice;
 
+import com.danilov.sport_abonement_app.exception.customer_exception.CustomerAllreadyAddedException;
+import com.danilov.sport_abonement_app.exception.customer_exception.CustomerNotFoundException;
+import com.danilov.sport_abonement_app.exception.customer_exception.CustomerStorageIsFullException;
 import com.danilov.sport_abonement_app.model.Customer;
 import org.springframework.stereotype.Service;
 
@@ -16,43 +19,67 @@ public class CustomerServiceImpl implements CustomerService {
         this.customer = customer;
     }*/
 
-   public String addCustomer(String name, String surname, Integer numberTelephone) {
-        //добавиить сюда валидацию string и Integer
-        if (customerMap.size() >= 1000) {
-            System.out.println("превышен лемит клиентов");
-        } else if (customerMap.containsKey(key(name, surname,numberTelephone))) {
-            System.out.println("Такой контрагент уже существует");
-        } else {
-            customerMap.put(key(name, surname,numberTelephone), new Customer(name, surname, numberTelephone));
+    public String addCustomer(String name, String surname, Integer numberTelephone) {
+        //добавиить сюда валидацию string и Integer и обработать исключения
+        if (customerMap.size() >= 10000) {
+            throw new CustomerStorageIsFullException();
+          // return "Превышен лемит количества контрагентов";
+        } else if (customerMap.containsKey(key(name, surname, numberTelephone))) {
+            throw new CustomerAllreadyAddedException();
+            // return "Такой контрагент уже существует";
+
         }
-       Customer customer = customerMap.get(key(name, surname, numberTelephone));
-       System.out.println("Введен новый контрагент -" +  name + " " + surname + ", " + numberTelephone);
-        return "Введены новые данные,  " + name + " " + surname + ", " + numberTelephone; // + предстваить номер телефона через стринг;//решить то же самое через стримы
+            customerMap.put(key(name, surname, numberTelephone), new Customer(name, surname, numberTelephone));
+        Customer customer = customerMap.get(key(name, surname, numberTelephone));
+        System.out.println("Введен новый контрагент -" + name + " " + surname + ", " + numberTelephone);
+        return "Введены новые данные,  " + customer.getCustomerId() + ", " + name + " " + surname + ", " + numberTelephone; //решить то же самое через стримы
     }
 
-        public String findCustomer(String name, String surname, Integer numberTelephone) {
-            if (!customerMap.containsKey(key(name, surname,numberTelephone))) {
-                System.out.println(" Такого контрагента не существует! ");
-            } else {
-                System.out.println("Найден контрагент");
-            }
-           Customer customer = customerMap.get(key(name,surname,numberTelephone));
-            return customer.getCustomerId() + ", " + name + ", " + surname + ", " + customer.getNumberTelephone();
-   }
+    public String findCustomer(String name, String surname, Integer numberTelephone) {
+        if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
+           throw new CustomerNotFoundException();
+           // return " Такого контрагента не существует! ";
+        }
+        Customer customer = customerMap.get(key(name, surname, numberTelephone));
+        return "Найден контрагент" + customer.getCustomerId() + ", " + name + ", " + surname + ", " + numberTelephone;
+    }
 
+    public String updateCustomer(String name, String surname, Integer numberTelephone, String upDateName, String upDateSurname, Integer upDateNumberTelephone) {
+        if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
+            throw new CustomerNotFoundException();
+        } else {
+            Customer customer = customerMap.get(key(name, surname, numberTelephone));
+            customer.setName(upDateName);
+            customer.setSurname(upDateSurname);
+            customer.setNumberTelephone(upDateNumberTelephone);
+            customerMap.remove(key(name, surname, numberTelephone));
+            customerMap.put(key(upDateName,upDateSurname,upDateNumberTelephone), customer);
 
-    /*     public  String updateCustomer (String name,String surname, Integer numberTelephone){
-        String parametrCustomer = findCustomer( name,  surname,  numberTelephone);
-         return
-          }//здесь возможно ошибка*/
+        }
+        return "Изменен данные контрагента " + name + surname + numberTelephone + " новые данные " + upDateName + ", " + upDateSurname + ", " + upDateNumberTelephone;
+    }
+
     public String deleteCustomer(String name, String surname, Integer numberTelephone) {
         if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
-            return "Контрагент с такими параметрами не найден!";
+           throw new CustomerNotFoundException();
         }
-        String deleteCustomer = String.valueOf(customerMap.remove(key(name,surname,numberTelephone)));
-        return "Удален контрагент - " + deleteCustomer;
+          Customer customer =  customerMap.remove(key(name, surname, numberTelephone));
+        return "Удален контрагент - " + customer;
     }
-    private String key(String name, String surname,Integer numberTelephone) {
+
+    public Map<String, Customer> printCustomerMap() {//Через Swager неработает данны метод
+        return customerMap;
+    }
+
+    public String printCustomer(String name, String surname, Integer numberTelephone) {
+        if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
+            throw new CustomerNotFoundException();
+        }
+        Customer customer = customerMap.get(key(name, surname, numberTelephone));
+        return customer.toString();
+    }
+
+    private String key(String name, String surname, Integer numberTelephone) {
         return name + surname + numberTelephone;
     }
 }

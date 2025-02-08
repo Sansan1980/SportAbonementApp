@@ -6,14 +6,14 @@ import java.util.List;
 public class Employee {
     private final long employeeId ;
     private static long employeeCounter ;
-    private final Integer numberTelephone;
-    private final String name;
-    private final String surname;
+    private  Integer numberTelephone;
+    private  String name;
+    private  String surname;
     private  Account accountEmployee;
     private int salary;
     private List <Task> tasks;
 
-    public Employee(Integer numberTelephone,String name,String surname) {
+    public Employee(String name,String surname,Integer numberTelephone) {
         this.employeeId = employeeCounter++;
         this.numberTelephone = numberTelephone;
         this.name = name;
@@ -23,20 +23,37 @@ public class Employee {
         this.tasks = new ArrayList<Task>();
     }
 
+
     public long getEmployeeId() {
         return employeeId;
+    }
+
+    public static long getEmployeeCounter() {
+        return employeeCounter;
+    }
+
+    public Integer getNumberTelephone() {
+        return numberTelephone;
+    }
+
+    public void setNumberTelephone(Integer numberTelephone) {
+        this.numberTelephone = numberTelephone;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getSurname() {
         return surname;
     }
 
-    public int getNumberTelephone() {
-        return numberTelephone;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public Account getAccountEmployee() {

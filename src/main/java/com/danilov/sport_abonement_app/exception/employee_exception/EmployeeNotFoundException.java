@@ -1,4 +1,4 @@
-package com.danilov.sport_abonement_app.exception;
+package com.danilov.sport_abonement_app.exception.employee_exception;
 
 public class EmployeeNotFoundException extends RuntimeException {
 

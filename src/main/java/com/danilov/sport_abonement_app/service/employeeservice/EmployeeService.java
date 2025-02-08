@@ -5,14 +5,19 @@ import com.danilov.sport_abonement_app.model.Employee;
 import java.util.Map;
 
 public interface EmployeeService {
-    String addEmployee(Integer numberTelephone,String name,String surname);
 
-    Employee findEmployee(Integer numberTelephone,String name,String surname);
+        String addEmployee(String name, String surname, Integer numberTelephone);
 
-    String deleteEmployee(Integer numberTelephone,String name,String surname);
+        String findEmployee(String name, String surname, Integer numberTelephone);
 
-    Map<String, Employee> representsDataAllEmployees();
+        String updateEmployee(String name, String surname, Integer numberTelephone, String upDateName, String upDateSurname, Integer upDateNumberTelephone);
 
-    String representsDataAllEmployeesEmployeeKey();
+        String deleteEmployee(String name, String surname, Integer numberTelephone);
 
-}
+        Map<String, Employee> printEmployeeMap();
+
+        String printEmployee(String name, String surname, Integer numberTelephone);
+
+
+    }
+
