@@ -5,13 +5,14 @@ import java.util.List;
 
 public class Employee {
     private final long employeeId ;
-    private static long employeeCounter ;
+    private  long employeeCounter ;
     private  Integer numberTelephone;
     private  String name;
     private  String surname;
     private  Account accountEmployee;
     private int salary;
     private List <Task> tasks;
+    private List <String> commentary;
 
     public Employee(String name,String surname,Integer numberTelephone) {
         this.employeeId = employeeCounter++;
@@ -21,15 +22,12 @@ public class Employee {
         this.accountEmployee = new Account();
         this.salary = 0;
         this.tasks = new ArrayList<Task>();
+        this.commentary = new ArrayList<String>();
     }
 
 
     public long getEmployeeId() {
         return employeeId;
-    }
-
-    public static long getEmployeeCounter() {
-        return employeeCounter;
     }
 
     public Integer getNumberTelephone() {
@@ -78,5 +76,12 @@ public class Employee {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+    public List<String> getCommentary() {
+        return commentary;
+    }
+
+    public void setCommentary(List<String> commentary) {
+        this.commentary = commentary;
     }
 }

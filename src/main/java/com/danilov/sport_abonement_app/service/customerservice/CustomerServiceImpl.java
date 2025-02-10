@@ -9,18 +9,18 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.danilov.sport_abonement_app.validation.Validates.validatesNumber;
+import static com.danilov.sport_abonement_app.validation.Validates.validatesString;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
     private static Map<String, Customer> customerMap = new HashMap<>();
-  /*  public static Customer customer;
-
-    public CustomerServiceImpl(Customer customer) {
-        this.customer = customer;
-    }*/
-
     public String addCustomer(String name, String surname, Integer numberTelephone) {
         //добавиить сюда валидацию string и Integer и обработать исключения
+        name = validatesString(name);
+        surname = validatesString(surname);
+        numberTelephone = validatesNumber(numberTelephone);
         if (customerMap.size() >= 10000) {
             throw new CustomerStorageIsFullException();
           // return "Превышен лемит количества контрагентов";
@@ -48,11 +48,10 @@ public class CustomerServiceImpl implements CustomerService {
         if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
             throw new CustomerNotFoundException();
         } else {
-            Customer customer = customerMap.get(key(name, surname, numberTelephone));
+            Customer customer =  customerMap.remove(key(name, surname, numberTelephone));
             customer.setName(upDateName);
             customer.setSurname(upDateSurname);
             customer.setNumberTelephone(upDateNumberTelephone);
-            customerMap.remove(key(name, surname, numberTelephone));
             customerMap.put(key(upDateName,upDateSurname,upDateNumberTelephone), customer);
 
         }
@@ -67,7 +66,7 @@ public class CustomerServiceImpl implements CustomerService {
         return "Удален контрагент - " + customer;
     }
 
-    public Map<String, Customer> printCustomerMap() {//Через Swager неработает данны метод
+    public Map<String, Customer> printCustomerMap() {//Через Swager неработает данный метод
         return customerMap;
     }
 

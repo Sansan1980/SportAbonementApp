@@ -20,12 +20,12 @@ public class Validates {
         return StringUtils.capitalize(name);//Делает строку заглавной, изменяя первый символ на заглавный согласно;
     }
 
-    public static int  validatesNumber(int number) {
-        String b = String.valueOf(number);
+    public static Integer validatesNumber(Integer numberTelephone) {
+        String b = String.valueOf(numberTelephone);
         if (!StringUtils.isBlank(b)) {//Проверяет, является ли CharSequence пустым (""), нулевым или содержит только пробелы.
 
             if (StringUtils.isNumeric(b)) {//Проверяет, содержит ли CharSequence только цифры Unicode
-                System.out.println(number);
+                System.out.println(numberTelephone);
             } else {
                 throw new BadRequestException();// System.out.println("текст содержит не только цифры -(isNumeric)");
             }
@@ -34,8 +34,14 @@ public class Validates {
             throw new BadRequestException();
             //System.out.println("  или (null) , или (пробел), или (нет символов) ");//System.out.println("  или (null) , или (пробел), или (нет символов) ");
         }
-        return number;//Integer.valueOf(b);
+        //сделать приведение номера телефона к единому формату
+        return numberTelephone;//Integer.valueOf(b);
     }
+
+    public static Integer validatesPasword(Integer password) {
+        return null;
+    }
+
     //_____
 }
 

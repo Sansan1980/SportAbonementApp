@@ -1,8 +1,13 @@
 package com.danilov.sport_abonement_app.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Task {
     private double rental;
     private double individualTraining;
+    private List<String> commentary;
+
 //    private double excursionThreeMan;
 //    private double excursionMoreThreeMan;
 //     private  double rentingSled;
@@ -12,9 +17,27 @@ public class Task {
 //     private double other;
 //     private long employeeId;
 
+    // gpt накидал
+    //  private Long id;
+    //    private String title;
+    //    private String description;
+    //    private LocalDateTime startDate;
+    //    private LocalDateTime endDate;
+    //    private String status;
+    //    private String priority;
+    //    private User assignedTo;
+    //    private String recurrence;
+    //    private String location;
+    //    private List<User> participants;
+    //    private LocalDateTime createdDate;
+    //    private LocalDateTime updatedDate;
+
+
     public Task() {
         this.rental = rental;
         this.individualTraining = individualTraining;
+        this.commentary = new ArrayList<String>();
+
 //        this.excursionThreeMan = excursionThreeMan;
 //        this.excursionMoreThreeMan = excursionMoreThreeMan;
 //        this.rentingSled = rentingSled;
@@ -39,6 +62,13 @@ public class Task {
 
     public void setIndividualTraining(double individualTraining) {
         this.individualTraining = individualTraining;
+    }
+    public List<String> getCommentary() {
+        return commentary;
+    }
+
+    public void setCommentary(List<String> commentary) {
+        this.commentary = commentary;
     }
 //
 //    public double getExcursionThreeMan() {

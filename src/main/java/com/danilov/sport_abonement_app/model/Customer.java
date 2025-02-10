@@ -5,12 +5,13 @@ import java.util.List;
 
 public class Customer {
     private final long customerId;
-    private static long customerCounter;
+    private  long customerCounter;
     private final Account accountCustomer;
     private String name;
     private String surname;
     private long numberTelephone;
     private List<Task> tasks;
+    private List <String> commentary;
 
     public Customer(String name, String surname, Integer numberTelephone) {
         this.customerId = customerCounter++;
@@ -19,6 +20,7 @@ public class Customer {
         this.surname = surname;//не знаю как реализовывать добовление имени клиента потом по желанию.
         this.numberTelephone = numberTelephone;
         this.tasks = new ArrayList<Task>();
+        this.commentary = new ArrayList<String>();
 
     }
 
@@ -61,6 +63,13 @@ public class Customer {
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+    public List<String> getCommentary() {
+        return commentary;
+    }
+
+    public void setCommentary(List<String> commentary) {
+        this.commentary = commentary;
     }
 
     @Override
