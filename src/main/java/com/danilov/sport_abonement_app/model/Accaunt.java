@@ -1,27 +1,32 @@
 package com.danilov.sport_abonement_app.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class Account {
+public class Accaunt {
     //    ID: Уникальный идентификатор учетной записи.
-    private final long accountId;
-    private long accountCounter;
+    private final long accauntId;
+
+    private long accauntCounter;
     //Email: Адрес электронной почты для идентификации и авторизации.
     private String eMail;
     //Password: Зашифрованный пароль для обеспечения безопасности.
     private String password;
     //Username: Имя пользователя, которое может использоваться в интерфейсе.
-    private String username;
+    private String userName;
+    private String login;
     private double amount;
     //Created_at: Дата и время создания учетной записи.
 //Updated_at: Дата и время последнего обновления учетной записи.
+
 //Role: Роль пользователя (например, администратор, клиент) для управления доступом.
     public enum Role {
         ADMIN,
         MODERATOR,
         CUSTOMER,
         EMPLOYEE,
+        OTHER
     }
 
     private Role role;
@@ -34,28 +39,29 @@ public class Account {
     }
 
     private Status status;
-    private List<String> commentary;
+    private String commentary;
 
-    public Account() {
-        this.accountId = accountCounter++;
-        this.eMail = eMail;
-        this.password = password;
-        this.username = username;
-        this.amount = amount;
-        this.role = role;
-        this.status = status;
-        this.commentary = new ArrayList<String>();
+    public Accaunt() {
+        this.accauntId = accauntCounter++;
+        this.eMail = "eMail";
+        this.password = "password";
+        this.userName = "userName";
+        this.login = "login";
+        this.amount = 0;
+        this.role = Role.CUSTOMER;
+        this.status = Status.ACTIVE;
+        this.commentary = "Комментарий";
     }
 
     public long getAccountId() {
-        return accountId;
+        return accauntId;
     }
 
     public String geteMail() {
         return eMail;
     }
 
-    public void seteMail(String eMail) {
+    public void setEMail(String eMail) {
         this.eMail = eMail;
     }
 
@@ -68,11 +74,19 @@ public class Account {
     }
 
     public String getUsername() {
-        return username;
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public Role getRole() {
@@ -98,11 +112,11 @@ public class Account {
     public void setStatus(Status status) {
         this.status = status;
     }
-    public List<String> getCommentary() {
+    public String getCommentary() {
         return commentary;
     }
 
-    public void setCommentary(List<String> commentary) {
+    public void setCommentary(String commentary) {
         this.commentary = commentary;
     }
 

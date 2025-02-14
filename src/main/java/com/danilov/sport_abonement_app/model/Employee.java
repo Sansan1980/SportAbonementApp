@@ -9,7 +9,7 @@ public class Employee {
     private  Integer numberTelephone;
     private  String name;
     private  String surname;
-    private  Account accountEmployee;
+    private  Accaunt accauntEmployee;
     private int salary;
     private List <Task> tasks;
     private List <String> commentary;
@@ -19,7 +19,7 @@ public class Employee {
         this.numberTelephone = numberTelephone;
         this.name = name;
         this.surname = surname;
-        this.accountEmployee = new Account();
+        this.accauntEmployee = new Accaunt();
         this.salary = 0;
         this.tasks = new ArrayList<Task>();
         this.commentary = new ArrayList<String>();
@@ -54,12 +54,12 @@ public class Employee {
         this.surname = surname;
     }
 
-    public Account getAccountEmployee() {
-        return accountEmployee;
+    public Accaunt getAccauntEmployee() {
+        return accauntEmployee;
     }
 
-    public void setAccountEmployee(Account accountEmployee) {
-        this.accountEmployee = accountEmployee;
+    public void setAccountEmployee(Accaunt accauntEmployee) {
+        this.accauntEmployee = accauntEmployee;
     }
 
     public int getSalary() {

@@ -6,7 +6,7 @@ import java.util.List;
 public class Customer {
     private final long customerId;
     private  long customerCounter;
-    private final Account accountCustomer;
+    private final Accaunt accauntCustomer;
     private String name;
     private String surname;
     private long numberTelephone;
@@ -15,7 +15,7 @@ public class Customer {
 
     public Customer(String name, String surname, Integer numberTelephone) {
         this.customerId = customerCounter++;
-        this.accountCustomer = new Account();
+        this.accauntCustomer = new Accaunt();
         this.name = name;//не знаю как реализовывать добовление имени клиента потом по  желанию.
         this.surname = surname;//не знаю как реализовывать добовление имени клиента потом по желанию.
         this.numberTelephone = numberTelephone;
@@ -28,8 +28,8 @@ public class Customer {
         return customerId;
     }
 
-    public Account getAccountCustomer() {
-        return accountCustomer;
+    public Accaunt getAccauntCustomer() {
+        return accauntCustomer;
     }
 
 
