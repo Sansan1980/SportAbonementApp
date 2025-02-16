@@ -10,17 +10,17 @@ public class Customer {
     private String name;
     private String surname;
     private long numberTelephone;
-    private List<Task> tasks;
-    private List <String> commentary;
+    private Task tasks;
+    private String commentary;
 
     public Customer(String name, String surname, Integer numberTelephone) {
         this.customerId = customerCounter++;
         this.accauntCustomer = new Accaunt();
-        this.name = name;//не знаю как реализовывать добовление имени клиента потом по  желанию.
-        this.surname = surname;//не знаю как реализовывать добовление имени клиента потом по желанию.
+        this.name = name;//не знаю как реализовывать добавление имени клиента потом по желанию.
+        this.surname = surname;//не знаю как реализовывать добавление имени клиента потом по желанию.
         this.numberTelephone = numberTelephone;
-        this.tasks = new ArrayList<Task>();
-        this.commentary = new ArrayList<String>();
+        this.tasks = new Task();
+        this.commentary = "Комментарий";
 
     }
 
@@ -57,18 +57,18 @@ public class Customer {
         this.numberTelephone = numberTelephone;
     }
 
-    public List<Task> getTasks() {
+    public Task getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void setTasks(Task tasks) {
         this.tasks = tasks;
     }
-    public List<String> getCommentary() {
+    public String getCommentary() {
         return commentary;
     }
 
-    public void setCommentary(List<String> commentary) {
+    public void setCommentary(String commentary) {
         this.commentary = commentary;
     }
 
@@ -76,7 +76,7 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "customerId=" + getCustomerId() +
-                ", accountCustomer=" + getAccountCustomer() +
+                ", accountCustomer=" + getAccauntCustomer() +
                 ", name='" + getName() + '\'' +
                 ", surname='" + getSurname() + '\'' +
                 ", numberTelephone=" + getNumberTelephone() + '}';

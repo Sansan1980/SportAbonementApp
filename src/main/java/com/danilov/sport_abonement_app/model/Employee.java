@@ -11,8 +11,8 @@ public class Employee {
     private  String surname;
     private  Accaunt accauntEmployee;
     private int salary;
-    private List <Task> tasks;
-    private List <String> commentary;
+    private Task tasks;
+    private String commentary;
 
     public Employee(String name,String surname,Integer numberTelephone) {
         this.employeeId = employeeCounter++;
@@ -21,8 +21,8 @@ public class Employee {
         this.surname = surname;
         this.accauntEmployee = new Accaunt();
         this.salary = 0;
-        this.tasks = new ArrayList<Task>();
-        this.commentary = new ArrayList<String>();
+        this.tasks = new Task();
+        this.commentary = "Комментарий";
     }
 
 
@@ -70,18 +70,32 @@ public class Employee {
         this.salary = salary;
     }
 
-    public List<Task> getTasks() {
+    public Task getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void setTasks(Task tasks) {
         this.tasks = tasks;
     }
-    public List<String> getCommentary() {
+    public String getCommentary() {
         return commentary;
     }
 
-    public void setCommentary(List<String> commentary) {
+    public void setCommentary(String commentary) {
         this.commentary = commentary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "employeeId=" + employeeId +
+                ", numberTelephone=" + numberTelephone +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", accauntEmployee=" + accauntEmployee +
+                ", salary=" + salary +
+                ", tasks=" + tasks +
+                ", commentary='" + commentary + '\'' +
+                '}';
     }
 }

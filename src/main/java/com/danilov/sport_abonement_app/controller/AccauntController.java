@@ -1,9 +1,6 @@
 package com.danilov.sport_abonement_app.controller;
 
-import com.danilov.sport_abonement_app.exception.accaunt_exception.NotFoundException;
 import com.danilov.sport_abonement_app.model.Accaunt;
-import com.danilov.sport_abonement_app.model.Customer;
-import com.danilov.sport_abonement_app.model.Employee;
 import com.danilov.sport_abonement_app.service.accauntservice.AccauntServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

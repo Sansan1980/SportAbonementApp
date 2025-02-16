@@ -1,12 +1,14 @@
 package com.danilov.sport_abonement_app.model;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Task {
-    private double rental;
-    private double individualTraining;
-    private List<String> commentary;
+    private Integer rental;
+    private Integer individualTraining;
+    private String commentary;
 
 //    private double excursionThreeMan;
 //    private double excursionMoreThreeMan;
@@ -34,9 +36,9 @@ public class Task {
 
 
     public Task() {
-        this.rental = rental;
-        this.individualTraining = individualTraining;
-        this.commentary = new ArrayList<String>();
+        this.rental = 0;
+        this.individualTraining = 0;
+        this.commentary = "комментарий";
 
 //        this.excursionThreeMan = excursionThreeMan;
 //        this.excursionMoreThreeMan = excursionMoreThreeMan;
@@ -52,7 +54,7 @@ public class Task {
         return rental;
     }
 
-    public void setRental(double rental) {
+    public void setRental(Integer rental) {
         this.rental = rental;
     }
 
@@ -60,14 +62,15 @@ public class Task {
         return individualTraining;
     }
 
-    public void setIndividualTraining(double individualTraining) {
+    public void setIndividualTraining(Integer individualTraining) {
         this.individualTraining = individualTraining;
     }
-    public List<String> getCommentary() {
+
+    public String getCommentary() {
         return commentary;
     }
 
-    public void setCommentary(List<String> commentary) {
+    public void setCommentary(String commentary) {
         this.commentary = commentary;
     }
 //
@@ -134,4 +137,13 @@ public class Task {
 //    public void setEmployeeId(long employeeId) {
 //        this.employeeId = employeeId;
 //    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "rental=" + rental +
+                ", individualTraining=" + individualTraining +
+                ", commentary='" + commentary + '\'' +
+                '}';
+    }
 }

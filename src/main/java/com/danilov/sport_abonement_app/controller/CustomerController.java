@@ -2,6 +2,7 @@ package com.danilov.sport_abonement_app.controller;
 
 import com.danilov.sport_abonement_app.model.Customer;
 import com.danilov.sport_abonement_app.service.customerservice.CustomerService;
+import com.danilov.sport_abonement_app.service.customerservice.CustomerServiceImpl;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,9 +13,9 @@ import java.util.Map;
 @RestController
 @RequestMapping("/customer")
 public class CustomerController {
-    private final CustomerService customerService;
+    private final CustomerServiceImpl customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerController(CustomerServiceImpl customerService) {
         this.customerService = customerService;
     }
     @GetMapping("/aadCustomer")

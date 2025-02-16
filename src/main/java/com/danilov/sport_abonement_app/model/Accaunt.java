@@ -120,5 +120,18 @@ public class Accaunt {
         this.commentary = commentary;
     }
 
-
+    @Override
+    public String toString() {
+        return "Accaunt{" +
+                "accauntId=" + accauntId +
+                ", eMail='" + eMail + '\'' +
+                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
+                ", login='" + login + '\'' +
+                ", amount=" + amount +
+                ", role=" + role +
+                ", status=" + status +
+                ", commentary='" + commentary + '\'' +
+                '}';
+    }
 }
