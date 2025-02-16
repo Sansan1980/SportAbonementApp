@@ -26,13 +26,12 @@ public class AccauntServiceImpl implements AccauntService {
         this.customerService = customerService;
     }
 
-    public String addAccaunt(String name, String surname, Integer numberTelephone, String eMail,
+    public String upDateAccaunt(String name, String surname, Integer numberTelephone, String eMail,
                              String password, String userName, String login, double amount, Accaunt.Role role, Accaunt.Status status,
                              String commentary) {
         //добавить сюда валидацию string и Integer
         if (employeeService.getEmployeeMap().containsKey(key(name, surname, numberTelephone))) {
             Employee employee = employeeService.getEmployeeMap().get(key(name, surname, numberTelephone));
-            //Employee employee = employeeMap.get(key(name, surname, numberTelephone));
             Accaunt accaunt = employee.getAccauntEmployee();
             accaunt.setEMail(eMail);
             accaunt.setPassword(password);
@@ -63,23 +62,17 @@ public class AccauntServiceImpl implements AccauntService {
     }
 
 
-    public String findAccaunt() {
-        return null;
-    }
-
-
-    public String upDateAccaunt() {
-        return null;
-    }
-
-
-    public String deleteAccaunt() {
-        return null;
-    }
-
-
-    public String printAccaunt() {
-        return null;
+    public String findAccaunt(String name, String surname, Integer numberTelephone) {
+        if (employeeService.getEmployeeMap().containsKey(key(name, surname, numberTelephone))) {
+            Employee employee = employeeService.getEmployeeMap().get(key(name, surname, numberTelephone));
+            Accaunt accaunt = employee.getAccauntEmployee();
+            return "Найден аккаунт для сотрудника " + employee.getEmployeeId() + ", " + name + " " + surname + ", " + numberTelephone + ", " + accaunt.toString(); //решить то же самое через стримы
+        } else if (customerService.getCustomerMap().containsKey(key(name, surname, numberTelephone))) {
+            Customer customer = customerService.getCustomerMap().get(key(name, surname, numberTelephone));
+            Accaunt accaunt = customer.getAccauntCustomer();
+            return "Найден аккаунт для сотрудника " + customer.getCustomerId() + ", " + name + " " + surname + ", " + numberTelephone + ", " + accaunt.toString();
+        }
+        throw new NotFoundException();
     }
 
     private String key(String name, String surname, Integer numberTelephone) {
