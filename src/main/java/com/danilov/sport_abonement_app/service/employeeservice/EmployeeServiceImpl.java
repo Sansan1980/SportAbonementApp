@@ -13,13 +13,10 @@ import java.util.Map;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private static Map<String, Employee> employeeMap = new HashMap<>();
-    public static Map<String, Employee> getEmployeeMap() {
-        return employeeMap;
-    }
+    private  Map<String, Employee> employeeMap = new HashMap<>();
 
-    public static void setEmployeeMap(Map<String, Employee> employeeMap) {
-        EmployeeServiceImpl.employeeMap = employeeMap;
+    public  Map<String, Employee> getEmployeeMap() {// почему без статик не работает он же паблик
+        return employeeMap;
     }
 
     public String addEmployee(String name, String surname, Integer numberTelephone) {
@@ -78,7 +75,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee.toString();
     }
 
-   private String key(String name, String surname, Integer numberTelephone) {
+    private String key(String name, String surname, Integer numberTelephone) {
         return name + surname + numberTelephone;
     }
 }

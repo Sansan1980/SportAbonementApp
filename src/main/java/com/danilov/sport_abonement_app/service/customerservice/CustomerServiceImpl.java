@@ -15,7 +15,12 @@ import static com.danilov.sport_abonement_app.validation.Validates.validatesStri
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-    private static Map<String, Customer> customerMap = new HashMap<>();
+    private  Map<String, Customer> customerMap = new HashMap<>();
+
+    public Map<String, Customer> getCustomerMap() {
+        return customerMap;
+    }
+
     public String addCustomer(String name, String surname, Integer numberTelephone) {
         //добавиить сюда валидацию string и Integer и обработать исключения
         name = validatesString(name);
