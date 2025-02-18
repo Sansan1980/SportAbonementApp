@@ -29,7 +29,7 @@ public class TaskServiceImpl implements TaskService {
             task.setRental(rental);
             task.setIndividualTraining(individualTraining);
             task.setCommentary(commentary);
-            return "Изменены задачи сотрудника " + name + ", " + surname + ", " + numberTelephone + "Задачи :" + task.getRental() + ", " + task.getIndividualTraining() + "," + task.getCommentary();
+            return new StringBuilder().append("Изменены задачи сотрудника ").append(name).append(", ").append(surname).append(", ").append(numberTelephone).append("Задачи :").append(task.toString()).toString();
         }
 //        } else if (customerService.getCustomerMap().containsKey(key(name, surname, numberTelephone))) {
 //            Customer customer = customerService.getCustomerMap().get(key(name, surname, numberTelephone));
@@ -37,9 +37,10 @@ public class TaskServiceImpl implements TaskService {
 //            task.setRental(rental);
 //            task.setIndividualTraining(individualTraining);
 //            task.setCommentary(commentary);
-//            return "Изменены задачи клиента "+ name + ", " + surname + ", " + numberTelephone + "Задачи :" + task.getRental() + ", " + task.getIndividualTraining() + "," + task.getCommentary();        }
+//            return "Изменены задачи клиента "+ name + ", " + surname + ", " + numberTelephone + "Задачи :" + task.getRental() + ", " + task.getIndividualTraining() + "," + task.getCommentary();
+//    }
         throw new TaskNotFoundException();
-        }
+    }
 
     public String fihdTask(String name, String surname, Integer numberTelephone) {
         if (employeeService.getEmployeeMap().containsKey(key(name, surname, numberTelephone))) {
@@ -52,10 +53,10 @@ public class TaskServiceImpl implements TaskService {
 //            Task task = customer.getTasks();
 //            return "Найдены задачи для клиента , " + name + surname +", " + numberTelephone + "Задачи; " + task.toString();
 //        }
-       throw new TaskNotFoundException();
+        throw new TaskNotFoundException();
     }
 
-        private String key (String name, String surname, Integer numberTelephone){
-            return name + surname + numberTelephone;
-        }
+    private String key(String name, String surname, Integer numberTelephone) {
+        return name + surname + numberTelephone;
     }
+}

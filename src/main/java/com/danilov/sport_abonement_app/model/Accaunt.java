@@ -8,7 +8,7 @@ public class Accaunt {
     //    ID: Уникальный идентификатор учетной записи.
     private final long accauntId;
 
-    private long accauntCounter;
+    private static long accauntCounter;
     //Email: Адрес электронной почты для идентификации и авторизации.
     private String eMail;
     //Password: Зашифрованный пароль для обеспечения безопасности.

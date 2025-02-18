@@ -37,6 +37,22 @@ public class Validates {
         //сделать приведение номера телефона к единому формату
         return numberTelephone;//Integer.valueOf(b);
     }
+    public static String removeSymbols(String phoneNumber) {
+        // Объявили метод удалитьСимволы
+        return phoneNumber.replace("-", "")
+                .replace("(", "")
+                .replace(")", "");
+    }
+
+    public static String validateCountry(String phoneNumber) {
+        // Объявили метод подтвердитьСтрану
+        if (phoneNumber.startsWith("8")) {
+            return phoneNumber.replaceFirst("8", "+7");
+        } else if (phoneNumber.startsWith("7")) {
+            return "+" + phoneNumber;
+        }
+        return phoneNumber;
+    }
 
     public static Integer validatesPasword(Integer password) {
         return null;

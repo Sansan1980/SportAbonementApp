@@ -4,17 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Employee {
-    private final long employeeId ;
-    private  long employeeCounter ;
-    private  Integer numberTelephone;
-    private  String name;
-    private  String surname;
-    private  Accaunt accauntEmployee;
+    private final long employeeId;
+    private static long employeeCounter;
+    private Integer numberTelephone;
+    private String name;
+    private String surname;
+    private Accaunt accauntEmployee;
     private int salary;
     private Task tasks;
     private String commentary;
 
-    public Employee(String name,String surname,Integer numberTelephone) {
+    public Employee(String name, String surname, Integer numberTelephone) {
         this.employeeId = employeeCounter++;
         this.numberTelephone = numberTelephone;
         this.name = name;
@@ -77,6 +77,7 @@ public class Employee {
     public void setTasks(Task tasks) {
         this.tasks = tasks;
     }
+
     public String getCommentary() {
         return commentary;
     }

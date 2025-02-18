@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Customer {
     private final long customerId;
-    private  long customerCounter;
+    private static long customerCounter;
     private final Accaunt accauntCustomer;
     private String name;
     private String surname;
