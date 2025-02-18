@@ -1,18 +1,16 @@
 package com.danilov.sport_abonement_app.service.taskservice;
 
 import com.danilov.sport_abonement_app.exception.task_exception.TaskNotFoundException;
-import com.danilov.sport_abonement_app.model.Customer;
 import com.danilov.sport_abonement_app.model.Employee;
 import com.danilov.sport_abonement_app.model.Task;
-import com.danilov.sport_abonement_app.service.customerservice.CustomerServiceImpl;
 import com.danilov.sport_abonement_app.service.employeeservice.EmployeeServiceImpl;
 import org.springframework.stereotype.Service;
 
 @Service
-public class TaskServiceImpl implements TaskService {
+public class TaskEmployeeServiceImpl implements TaskEmployeeService {
     private EmployeeServiceImpl employeeService;
 
-    public TaskServiceImpl(EmployeeServiceImpl employeeService) {
+    public TaskEmployeeServiceImpl(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
 
@@ -22,7 +20,7 @@ public class TaskServiceImpl implements TaskService {
 //        this.customerService = customerService;
 //    }
 
-    public String upDateTask(String name, String surname, Integer numberTelephone, Integer rental, Integer individualTraining, String commentary) {
+    public String upDateEmployeeTask(String name, String surname, Integer numberTelephone, Integer rental, Integer individualTraining, String commentary) {
         if (employeeService.getEmployeeMap().containsKey(key(name, surname, numberTelephone))) {
             Employee employee = employeeService.getEmployeeMap().get(key(name, surname, numberTelephone));
             Task task = employee.getTasks();
@@ -42,7 +40,7 @@ public class TaskServiceImpl implements TaskService {
         throw new TaskNotFoundException();
     }
 
-    public String fihdTask(String name, String surname, Integer numberTelephone) {
+    public String fihdEmployeeTask(String name, String surname, Integer numberTelephone) {
         if (employeeService.getEmployeeMap().containsKey(key(name, surname, numberTelephone))) {
             Employee employee = employeeService.getEmployeeMap().get(key(name, surname, numberTelephone));
             Task task = employee.getTasks();
