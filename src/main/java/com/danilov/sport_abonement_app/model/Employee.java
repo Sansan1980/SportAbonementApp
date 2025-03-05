@@ -2,6 +2,7 @@ package com.danilov.sport_abonement_app.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Employee {
     private final long employeeId;
@@ -19,10 +20,10 @@ public class Employee {
         this.numberTelephone = numberTelephone;
         this.name = name;
         this.surname = surname;
-        this.accauntEmployee = new Accaunt();
-        this.salary = 0;
-        this.tasks = new Task();
-        this.commentary = "Комментарий";
+        this.accauntEmployee = accauntEmployee;
+        this.salary = salary;
+        this.tasks = tasks;
+        this.commentary = commentary;
     }
 
 
@@ -98,5 +99,18 @@ public class Employee {
                 ", tasks=" + tasks +
                 ", commentary='" + commentary + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return employeeId == employee.employeeId && salary == employee.salary && Objects.equals(numberTelephone, employee.numberTelephone) && Objects.equals(name, employee.name) && Objects.equals(surname, employee.surname) && Objects.equals(accauntEmployee, employee.accauntEmployee) && Objects.equals(tasks, employee.tasks) && Objects.equals(commentary, employee.commentary);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(employeeId, numberTelephone, name, surname, accauntEmployee, salary, tasks, commentary);
     }
 }

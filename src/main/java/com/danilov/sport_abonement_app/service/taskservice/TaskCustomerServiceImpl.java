@@ -21,7 +21,6 @@ public class TaskCustomerServiceImpl implements TaskCustomerService {
 //    public TaskServiceImpl(CustomerServiceImpl customerService) {
 //        this.customerService = customerService;
 //    }
-
     public String upDateCustomerTask(String name, String surname, Integer numberTelephone, Integer rental, Integer individualTraining, String commentary) {
   if (customerService.getCustomerMap().containsKey(key(name, surname, numberTelephone))) {
             Customer customer = customerService.getCustomerMap().get(key(name, surname, numberTelephone));
@@ -29,7 +28,8 @@ public class TaskCustomerServiceImpl implements TaskCustomerService {
             task.setRental(rental);
             task.setIndividualTraining(individualTraining);
             task.setCommentary(commentary);
-            return "Изменены задачи клиента "+ name + ", " + surname + ", " + numberTelephone + "Задачи :" + task.getRental() + ", " + task.getIndividualTraining() + "," + task.getCommentary();
+            return null;
+            //return "Изменены задачи клиента "+ name + ", " + surname + ", " + numberTelephone + "Задачи :" + task.getRental() + ", " + task.getIndividualTraining() + "," + task.getCommentary();
     }
         throw new TaskNotFoundException();
     }

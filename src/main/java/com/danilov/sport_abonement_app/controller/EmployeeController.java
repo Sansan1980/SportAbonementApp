@@ -2,10 +2,7 @@ package com.danilov.sport_abonement_app.controller;
 
 import com.danilov.sport_abonement_app.model.Employee;
 import com.danilov.sport_abonement_app.service.employeeservice.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -19,7 +16,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/aadEmployee")
+    @PostMapping("/aadEmployee")
     public String aadEmployee(@RequestParam(value = "name", required = false) String name,
                               @RequestParam(value = "surname", required = false) String surname,
                               @RequestParam(value = "numberTelephone", required = false) Integer numberTelephone) {
@@ -33,7 +30,7 @@ public class EmployeeController {
         return employeeService.findEmployee(name, surname, numberTelephone);
     }
 
-    @GetMapping("/updateEmployee")
+    @PutMapping("/updateEmployee")
     public String updateEmployee(@RequestParam(value = "name", required = false) String name,
                                  @RequestParam(value = "surname", required = false) String surname,
                                  @RequestParam(value = "numberTelephone", required = false) Integer numberTelephone,
@@ -44,7 +41,7 @@ public class EmployeeController {
     }
 
 
-    @GetMapping("/deleteEmployee")
+    @DeleteMapping("/deleteEmployee")
     public String deleteEmployeer(@RequestParam(value = "name") String name,
                                   @RequestParam(value = "surname") String surname,
                                   @RequestParam(value = "numberTelephone") Integer numberTelephone) {

@@ -41,7 +41,7 @@ public class Accaunt {
     private Status status;
     private String commentary;
 
-    public Accaunt() {
+    public Accaunt(String eMail,String password,String userName,String login,double amount,Accaunt.Role role,Accaunt.Status status,String commentary) {
         this.accauntId = accauntCounter++;
         this.eMail = "eMail";
         this.password = "password";

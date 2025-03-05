@@ -19,8 +19,8 @@ public class Customer {
         this.name = name;//не знаю как реализовывать добавление имени клиента потом по желанию.
         this.surname = surname;//не знаю как реализовывать добавление имени клиента потом по желанию.
         this.numberTelephone = numberTelephone;
-        this.tasks = new Task();
-        this.commentary = "Комментарий";
+        this.tasks = tasks;
+        this.commentary = commentary;
 
     }
 

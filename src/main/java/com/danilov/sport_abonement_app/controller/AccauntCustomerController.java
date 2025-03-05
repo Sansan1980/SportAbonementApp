@@ -2,10 +2,7 @@ package com.danilov.sport_abonement_app.controller;
 
 import com.danilov.sport_abonement_app.model.Accaunt;
 import com.danilov.sport_abonement_app.service.accauntservice.AccauntCustomerServiceImpl;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/accaunt/customer")
@@ -16,7 +13,7 @@ public class AccauntCustomerController {
         this.accauntCustomerService = accauntCustomerService;
     }
 
-    @GetMapping("/upDate")
+    @PutMapping("/upDate")
     public String upDateCustomerAccaunt(@RequestParam(value = "name", required = false) String name,
                                 @RequestParam(value = "surname", required = false) String surname,
                                 @RequestParam(value = "numberTelephone", required = false) Integer numberTelephone,

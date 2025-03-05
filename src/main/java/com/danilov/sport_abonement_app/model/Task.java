@@ -35,10 +35,10 @@ public class Task {
     //    private LocalDateTime updatedDate;
 
 
-    public Task() {
-        this.rental = 0;
-        this.individualTraining = 0;
-        this.commentary = "комментарий";
+    public Task(Integer rental,Integer individualTraining, String commentary) {
+        this.rental = rental;
+        this.individualTraining = individualTraining;
+        this.commentary = commentary;
 
 //        this.excursionThreeMan = excursionThreeMan;
 //        this.excursionMoreThreeMan = excursionMoreThreeMan;

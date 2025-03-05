@@ -23,14 +23,15 @@ public class AccauntCustomerServiceImpl implements AccauntCustomerService {
         if (customerService.getCustomerMap().containsKey(key(name, surname, numberTelephone))) {
             Customer customer = customerService.getCustomerMap().get(key(name, surname, numberTelephone));
             Accaunt accaunt = customer.getAccauntCustomer();
-            accaunt.setEMail(eMail);
-            accaunt.setPassword(password);
-            accaunt.setUserName(userName);
-            accaunt.setLogin(login);
-            accaunt.setAmount(amount);
-            accaunt.setRole(role);
-            accaunt.setStatus(status);
-            accaunt.setCommentary(commentary);
+            accaunt = new Accaunt(eMail,password,userName,login,amount,role,status,commentary);
+//            accaunt.setEMail(eMail);
+//            accaunt.setPassword(password);
+//            accaunt.setUserName(userName);
+//            accaunt.setLogin(login);
+//            accaunt.setAmount(amount);
+//            accaunt.setRole(role);
+//            accaunt.setStatus(status);
+//            accaunt.setCommentary(commentary);
             return "Введены новые данные, для аккаунта клиента " + customer.getCustomerId() + ", " + name + " " + surname + ", " + numberTelephone
                     + accaunt.getAccountId() + ", " + eMail + ", " + password + ", " + userName + "," + login + ", " + ", " + role + ", " + status + ", " + commentary;
 
