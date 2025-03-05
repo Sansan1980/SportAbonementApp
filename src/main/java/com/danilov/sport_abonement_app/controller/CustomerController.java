@@ -1,6 +1,7 @@
 package com.danilov.sport_abonement_app.controller;
 
 import com.danilov.sport_abonement_app.model.Customer;
+import com.danilov.sport_abonement_app.model.dto.CustomerView;
 import com.danilov.sport_abonement_app.service.customerservice.CustomerService;
 import com.danilov.sport_abonement_app.service.customerservice.CustomerServiceImpl;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +16,16 @@ public class CustomerController {
     public CustomerController(CustomerServiceImpl customerService) {
         this.customerService = customerService;
     }
-
     @PostMapping("/aadCustomer")
-    public String aadCustomer(@RequestParam(value = "name", required = false) String name,
-                              @RequestParam(value = "surname", required = false) String surname,
-                              @RequestParam(value = "numberTelephone", required = false) Integer numberTelephone) {
-        return customerService.addCustomer(name, surname, numberTelephone);
+    public CustomerView aadCustomer(@RequestBody Customer customer ) {
+        return customerService.addCustomer(customer);
     }
+//    @PostMapping("/aadCustomer")
+//    public String aadCustomer(@RequestParam(value = "name", required = false) String name,
+//                              @RequestParam(value = "surname", required = false) String surname,
+//                              @RequestParam(value = "numberTelephone", required = false) Integer numberTelephone) {
+//        return customerService.addCustomer(name, surname, numberTelephone);
+//    }
 
     @GetMapping("/findCustomer")
     public String findCustomer(@RequestParam(value = "name", required = false) String name,

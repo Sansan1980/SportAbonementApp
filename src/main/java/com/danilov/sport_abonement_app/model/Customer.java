@@ -13,14 +13,14 @@ public class Customer {
     private Task tasks;
     private String commentary;
 
-    public Customer(String name, String surname, Integer numberTelephone) {
+    public Customer(String name, String surname, long numberTelephone, Accaunt accaunt) {
         this.customerId = customerCounter++;
-        this.accauntCustomer = new Accaunt();
+        this.accauntCustomer = accaunt;
         this.name = name;//не знаю как реализовывать добавление имени клиента потом по желанию.
         this.surname = surname;//не знаю как реализовывать добавление имени клиента потом по желанию.
         this.numberTelephone = numberTelephone;
-        this.tasks = tasks;
-        this.commentary = commentary;
+        // this.tasks = tasks;
+        // this.commentary = commentary;
 
     }
 
@@ -53,7 +53,7 @@ public class Customer {
         return numberTelephone;
     }
 
-    public void setNumberTelephone(Integer numberTelephone) {
+    public void setNumberTelephone(long numberTelephone) {
         this.numberTelephone = numberTelephone;
     }
 
@@ -64,6 +64,7 @@ public class Customer {
     public void setTasks(Task tasks) {
         this.tasks = tasks;
     }
+
     public String getCommentary() {
         return commentary;
     }

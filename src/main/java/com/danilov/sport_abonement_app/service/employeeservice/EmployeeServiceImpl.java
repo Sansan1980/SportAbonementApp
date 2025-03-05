@@ -13,9 +13,9 @@ import java.util.Map;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    private  Map<String, Employee> employeeMap = new HashMap<>();
+    private Map<String, Employee> employeeMap = new HashMap<>();
 
-    public  Map<String, Employee> getEmployeeMap() {// почему без статик не работает он же паблик
+    public Map<String, Employee> getEmployeeMap() {// почему без статик не работает он же паблик
         return employeeMap;
     }
 
@@ -30,6 +30,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employeeMap.put(key(name, surname, numberTelephone), new Employee(name, surname, numberTelephone));
         Employee employee = employeeMap.get(key(name, surname, numberTelephone));
+
+        System.out.println("Введен новый контрагент -" + name + " " + surname + ", " + numberTelephone);
         return "Введены новые данные,  " + employee.getEmployeeId() + ", " + name + " " + surname + ", " + numberTelephone; //решить то же самое через стримы
     }
 
