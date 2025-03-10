@@ -16,6 +16,8 @@ import static com.danilov.sport_abonement_app.validation.Validates.*;
 public class CustomerServiceImpl implements CustomerService {
 
     private Map<String, Customer> customerMap = new HashMap<>();
+    //  private Map<Customer, CustomerView> customerCustomerViewMap = new HashMap<>();
+
 
     public Map<String, Customer> getCustomerMap() {
         return customerMap;
@@ -27,47 +29,54 @@ public class CustomerServiceImpl implements CustomerService {
         if (customerMap.size() >= 10000) {
             throw new CustomerStorageIsFullException();
         }
-            // return "Превышен лемит количества контрагентов";
+        // return "Превышен лемит количества контрагентов";
         String key = extractkey(customer);
         if (customerMap.containsKey(key)) {
             throw new CustomerAllreadyAddedException();
             // return "Такой контрагент уже существует";
 
         }
-        customerMap.put (key,customer);
-        System.out.println("Введен новый контрагент -" + customer );
-        return   new CustomerView(customer);
+        customerMap.put(key, customer);
+        System.out.println("Введен новый контрагент -" + customer);
+        return new CustomerView(customer);
     }
 
-    public String findCustomer(String name, String surname, Integer numberTelephone) {
-        if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
+    public CustomerView findCustomer(Customer customer) {
+        String key = extractkey(customer);
+        if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
             // return " Такого контрагента не существует! ";
         }
-        Customer customer = customerMap.get(key(name, surname, numberTelephone));
-        return "Найден контрагент" + customer.getCustomerId() + ", " + name + ", " + surname + ", " + numberTelephone;
+        customer = customerMap.get(key);
+        System.out.println("Найден контрагент" + customer);
+        return new CustomerView(customer);//не уверен что правильно создавать , каждый раз, в методах круд new CustomerView? они ведь одинаковые  c тем же что и созданный при добавлении в мапу.Получается что каждый раз при поиске будет создаваться новый обьект класса CustomerView!?!?!?
     }
 
-    public String updateCustomer(String name, String surname, Integer numberTelephone, String upDateName, String upDateSurname, Integer upDateNumberTelephone) {
-        if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
+
+    public CustomerView updateCustomer(Customer customer, Customer customerNew) {
+        String key = extractkey(customer);
+        if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
         }
-
-            Customer customer = customerMap.remove(key(name, surname, numberTelephone));
-            customer.setName(upDateName);
-            customer.setSurname(upDateSurname);
-            customer.setNumberTelephone(upDateNumberTelephone);
-            customerMap.put(key(upDateName, upDateSurname, upDateNumberTelephone), customer);
-
-        return "Изменен данные контрагента " + name + surname + numberTelephone + " новые данные " + upDateName + ", " + upDateSurname + ", " + upDateNumberTelephone;
+//        customerMap.put(key, customerNew);
+//        System.out.println("Изменены данные контрагента - " + customer +", новые данные " + customerNew);
+//        return new CustomerView(customerNew);
+//    }
+        customerMap.put(key, customerNew);
+        System.out.println("Изменены данные контрагента - " + customer);
+        customer = customerMap.get(key);
+        System.out.println(", новые данные " + customer);
+        return new CustomerView(customer);
     }
 
-    public String deleteCustomer(String name, String surname, Integer numberTelephone) {
-        if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
+    public CustomerView deleteCustomer(Customer customer) {
+        String key = extractkey(customer);
+        if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
         }
-        Customer customer = customerMap.remove(key(name, surname, numberTelephone));
-        return "Удален контрагент - " + customer;
+         customer = customerMap.remove(key);
+        System.out.println("Удален контрагент - " + customer);
+        return new CustomerView(customer);
     }
 
     public Map<String, Customer> printCustomerMap() {//Через Swager неработает данный метод
@@ -87,7 +96,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     private String extractkey(Customer customer) {
-        return key(customer.getName(),customer.getSurname(),customer.getNumberTelephone());
+        return key(customer.getName(), customer.getSurname(), customer.getNumberTelephone());
     }
 }
 

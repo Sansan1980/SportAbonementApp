@@ -2,6 +2,7 @@ package com.danilov.sport_abonement_app.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Customer {
     private final long customerId;
@@ -83,4 +84,15 @@ public class Customer {
                 ", numberTelephone=" + getNumberTelephone() + '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer customer)) return false;
+        return getCustomerId() == customer.getCustomerId() && getNumberTelephone() == customer.getNumberTelephone() && Objects.equals(getAccauntCustomer(), customer.getAccauntCustomer()) && Objects.equals(getName(), customer.getName()) && Objects.equals(getSurname(), customer.getSurname()) && Objects.equals(getTasks(), customer.getTasks()) && Objects.equals(getCommentary(), customer.getCommentary());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getCustomerId(), getAccauntCustomer(), getName(), getSurname(), getNumberTelephone(), getTasks(), getCommentary());
+    }
 }

@@ -10,7 +10,7 @@ public class CustomerView {
     private String surname;
     private long numberTelephone;
 
-    public CustomerView() {
+    public CustomerView() {//забыл для чего джексону нужен пустой конструктор? и как это работает в памяти компа и в jvm?
 
     }
     public CustomerView(Customer customer) {
