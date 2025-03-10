@@ -7,9 +7,9 @@ import java.util.Objects;
 public class Employee {
     private final long employeeId;
     private static long employeeCounter;
-    private Integer numberTelephone;
     private String name;
     private String surname;
+    private Integer numberTelephone;
     private Accaunt accauntEmployee;
     private int salary;
     private Task tasks;

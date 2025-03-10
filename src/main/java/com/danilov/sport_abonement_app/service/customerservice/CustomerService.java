@@ -8,17 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public interface CustomerService {
-   CustomerView addCustomer(Customer customer);
+    CustomerView addCustomer(Customer customer);
 
     CustomerView findCustomer(Customer customer);
 
-    CustomerView updateCustomer(Customer customer,Customer customerNew);
+    CustomerView updateCustomer(Customer customer, Customer customerNew);
 
     CustomerView deleteCustomer(Customer customer);
 
-    Map<String,Customer> printCustomerMap();
-
-    String printCustomer(String name, String surname, Integer numberTelephone);
-
-
+    Map<String, Customer> printCustomerMap();
 }

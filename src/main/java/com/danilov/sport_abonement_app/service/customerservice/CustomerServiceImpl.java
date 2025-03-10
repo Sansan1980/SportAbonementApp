@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
             throw new CustomerStorageIsFullException();
         }
         // return "Превышен лемит количества контрагентов";
-        String key = extractkey(customer);
+        String key = extractKey(customer);
         if (customerMap.containsKey(key)) {
             throw new CustomerAllreadyAddedException();
             // return "Такой контрагент уже существует";
@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     public CustomerView findCustomer(Customer customer) {
-        String key = extractkey(customer);
+        String key = extractKey(customer);
         if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
             // return " Такого контрагента не существует! ";
@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     public CustomerView updateCustomer(Customer customer, Customer customerNew) {
-        String key = extractkey(customer);
+        String key = extractKey(customer);
         if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
         }
@@ -70,11 +70,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     public CustomerView deleteCustomer(Customer customer) {
-        String key = extractkey(customer);
+        String key = extractKey(customer);
         if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
         }
-         customer = customerMap.remove(key);
+        customer = customerMap.remove(key);
         System.out.println("Удален контрагент - " + customer);
         return new CustomerView(customer);
     }
@@ -83,19 +83,11 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMap;
     }
 
-    public String printCustomer(String name, String surname, Integer numberTelephone) {
-        if (!customerMap.containsKey(key(name, surname, numberTelephone))) {
-            throw new CustomerNotFoundException();
-        }
-        Customer customer = customerMap.get(key(name, surname, numberTelephone));
-        return customer.toString();
-    }
-
     private String key(String name, String surname, long numberTelephone) {
         return name + surname + numberTelephone;
     }
 
-    private String extractkey(Customer customer) {
+    private String extractKey(Customer customer) {
         return key(customer.getName(), customer.getSurname(), customer.getNumberTelephone());
     }
 }

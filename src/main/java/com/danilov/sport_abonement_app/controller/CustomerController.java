@@ -58,7 +58,7 @@ public class CustomerController {
     }
 
     @GetMapping("/printCustomer ")
-    public String printCustomer(String name, String surname, Integer numberTelephone) {
+    public Customer printCustomer(String name, String surname, Integer numberTelephone) {
         return customerService.printCustomer(name, surname, numberTelephone);
     }
 }

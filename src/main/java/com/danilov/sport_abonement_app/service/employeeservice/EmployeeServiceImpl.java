@@ -5,6 +5,7 @@ import com.danilov.sport_abonement_app.exception.employee_exception.EmployeeAllr
 import com.danilov.sport_abonement_app.exception.employee_exception.EmployeeNotFoundException;
 import com.danilov.sport_abonement_app.exception.employee_exception.EmployeeStorageIsFullException;
 import com.danilov.sport_abonement_app.model.Employee;
+import com.danilov.sport_abonement_app.model.dto.EmployeeView;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -19,50 +20,55 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeMap;
     }
 
-    public String addEmployee(String name, String surname, Integer numberTelephone) {
+    public EmployeeView addEmployee(Employee employee) {
         //добавить сюда валидацию string и Integer
         if (employeeMap.size() >= 10000) {
             throw new EmployeeStorageIsFullException();
             // return "Превышен лимит количества контрагентов";
-        } else if (employeeMap.containsKey(key(name, surname, numberTelephone))) {
+        }
+        String key = exstractKey(employee);
+        if (employeeMap.containsKey(key)) {
             throw new EmployeeAllreadyAddedException();
             // return "Такой контрагент уже существует";
         }
-        employeeMap.put(key(name, surname, numberTelephone), new Employee(name, surname, numberTelephone));
-        Employee employee = employeeMap.get(key(name, surname, numberTelephone));
+        employeeMap.put(key, employee);
+        employee = employeeMap.get(key);
+        System.out.println("Введен новый контрагент -" + employee);
 
-        System.out.println("Введен новый контрагент -" + name + " " + surname + ", " + numberTelephone);
-        return "Введены новые данные,  " + employee.getEmployeeId() + ", " + name + " " + surname + ", " + numberTelephone; //решить то же самое через стримы
+        return new EmployeeView(employee);
     }
 
-    public String findEmployee(String name, String surname, Integer numberTelephone) {
-        if (!employeeMap.containsKey(key(name, surname, numberTelephone))) {
+    public EmployeeView findEmployee(Employee employee) {
+        String key = exstractKey(employee);
+        if (!employeeMap.containsKey(key)) {
             throw new EmployeeNotFoundException();
             // return "Такого контрагента не существует! ";
         }
-        Employee employee = employeeMap.get(key(name, surname, numberTelephone));
-        return "Найден контрагент" + employee.getEmployeeId() + ", " + name + ", " + surname + ", " + numberTelephone;
+        employee = employeeMap.get(key);
+        System.out.println("Найден контрагент" + employee);
+        return new EmployeeView(employee);
     }
 
-    public String updateEmployee(String name, String surname, Integer numberTelephone, String upDateName, String upDateSurname, Integer upDateNumberTelephone) {
-        if (!employeeMap.containsKey(key(name, surname, numberTelephone))) {
+
+    public EmployeeView updateEmployee(Employee employee, Employee employeeNew) {
+        String key = exstractKey(employee);
+        if (!employeeMap.containsKey(key)) {
             throw new EmployeeNotFoundException();
         }
-        Employee employee = employeeMap.remove(key(name, surname, numberTelephone));
-        employee.setName(upDateName);
-        employee.setSurname(upDateSurname);
-        employee.setNumberTelephone(upDateNumberTelephone);
-        employeeMap.put(key(upDateName, upDateSurname, upDateNumberTelephone), employee);
-
-        return "Изменен данные контрагента " + name + surname + numberTelephone + " новые данные " + upDateName + ", " + upDateSurname + ", " + upDateNumberTelephone;
+        employeeMap.put(key, employeeNew);
+        System.out.println("Изменен данные контрагента " + employee);
+        employee = employeeMap.get(key);
+        return new EmployeeView(employee);
     }
 
-    public String deleteEmployee(String name, String surname, Integer numberTelephone) {
-        if (!employeeMap.containsKey(key(name, surname, numberTelephone))) {
+    public EmployeeView deleteEmployee(Employee employee) {
+        String key = exstractKey(employee);
+        if (!employeeMap.containsKey(key)) {
             throw new EmployeeNotFoundException();
         }
-        Employee employee = employeeMap.remove(key(name, surname, numberTelephone));
-        return "Удален контрагент - " + employee;
+        employee = employeeMap.remove(key);
+        System.out.println("Удален контрагент - " + employee);
+        return new EmployeeView(employee);
     }
 
     public Map<String, Employee> printEmployeeMap() {//Через Swagger не работает данные метод
@@ -79,5 +85,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private String key(String name, String surname, Integer numberTelephone) {
         return name + surname + numberTelephone;
+    }
+
+    private String exstractKey(Employee employee) {
+        return key(employee.getName(), employee.getSurname(), employee.getNumberTelephone());
     }
 }

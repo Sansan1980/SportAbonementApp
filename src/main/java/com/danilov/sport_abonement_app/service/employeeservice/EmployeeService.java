@@ -1,18 +1,19 @@
 package com.danilov.sport_abonement_app.service.employeeservice;
 
 import com.danilov.sport_abonement_app.model.Employee;
+import com.danilov.sport_abonement_app.model.dto.EmployeeView;
 
 import java.util.Map;
 
 public interface EmployeeService {
 
-        String addEmployee(String name, String surname, Integer numberTelephone);
+        EmployeeView addEmployee(Employee employee);
 
-        String findEmployee(String name, String surname, Integer numberTelephone);
+        EmployeeView findEmployee(Employee employee);
 
-        String updateEmployee(String name, String surname, Integer numberTelephone, String upDateName, String upDateSurname, Integer upDateNumberTelephone);
+        EmployeeView updateEmployee(Employee employee,Employee employeeNew);
 
-        String deleteEmployee(String name, String surname, Integer numberTelephone);
+        EmployeeView deleteEmployee(Employee employee);
 
         Map<String, Employee> printEmployeeMap();
 

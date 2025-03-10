@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Task {
     private Integer rental;
@@ -145,5 +146,17 @@ public class Task {
                 ", individualTraining=" + individualTraining +
                 ", commentary='" + commentary + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Task task)) return false;
+        return Objects.equals(getRental(), task.getRental()) && Objects.equals(getIndividualTraining(), task.getIndividualTraining()) && Objects.equals(getCommentary(), task.getCommentary());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getRental(), getIndividualTraining(), getCommentary());
     }
 }

@@ -3,6 +3,7 @@ package com.danilov.sport_abonement_app.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class Accaunt {
     //    ID: Уникальный идентификатор учетной записи.
@@ -135,4 +136,15 @@ public class Accaunt {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Accaunt accaunt)) return false;
+        return accauntId == accaunt.accauntId && Double.compare(getAmount(), accaunt.getAmount()) == 0 && Objects.equals(geteMail(), accaunt.geteMail()) && Objects.equals(getPassword(), accaunt.getPassword()) && Objects.equals(userName, accaunt.userName) && Objects.equals(getLogin(), accaunt.getLogin()) && getRole() == accaunt.getRole() && getStatus() == accaunt.getStatus() && Objects.equals(getCommentary(), accaunt.getCommentary());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accauntId, geteMail(), getPassword(), userName, getLogin(), getAmount(), getRole(), getStatus(), getCommentary());
+    }
 }
