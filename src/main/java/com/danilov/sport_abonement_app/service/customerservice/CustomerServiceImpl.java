@@ -4,7 +4,8 @@ import com.danilov.sport_abonement_app.exception.customer_exception.CustomerAllr
 import com.danilov.sport_abonement_app.exception.customer_exception.CustomerNotFoundException;
 import com.danilov.sport_abonement_app.exception.customer_exception.CustomerStorageIsFullException;
 import com.danilov.sport_abonement_app.model.Customer;
-import com.danilov.sport_abonement_app.model.dto.CustomerView;
+import com.danilov.sport_abonement_app.model.dto.CustomerDTO;
+import com.danilov.sport_abonement_app.service.mappers.CustomerMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -16,14 +17,9 @@ import static com.danilov.sport_abonement_app.validation.Validates.*;
 public class CustomerServiceImpl implements CustomerService {
 
     private Map<String, Customer> customerMap = new HashMap<>();
-    //  private Map<Customer, CustomerView> customerCustomerViewMap = new HashMap<>();
+    private CustomerMapper customerMapper = new CustomerMapper();
 
-
-    public Map<String, Customer> getCustomerMap() {
-        return customerMap;
-    }
-
-    public CustomerView addCustomer(Customer customer) {
+    public CustomerDTO addCustomer(Customer customer) {
         //добавиить сюда валидацию string и Integer и обработать исключения
         validateCustomer(customer);
         if (customerMap.size() >= 10000) {
@@ -38,10 +34,10 @@ public class CustomerServiceImpl implements CustomerService {
         }
         customerMap.put(key, customer);
         System.out.println("Введен новый контрагент -" + customer);
-        return new CustomerView(customer);
+        return customerMapper.toDTO(customer);
     }
 
-    public CustomerView findCustomer(Customer customer) {
+    public CustomerDTO findCustomer(Customer customer) {
         String key = extractKey(customer);
         if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
@@ -49,34 +45,31 @@ public class CustomerServiceImpl implements CustomerService {
         }
         customer = customerMap.get(key);
         System.out.println("Найден контрагент" + customer);
-        return new CustomerView(customer);//не уверен что правильно создавать , каждый раз, в методах круд new CustomerView? они ведь одинаковые  c тем же что и созданный при добавлении в мапу.Получается что каждый раз при поиске будет создаваться новый обьект класса CustomerView!?!?!?
+        return customerMapper.toDTO(customer);//не уверен что правильно создавать , каждый раз, в методах круд new CustomerView? они ведь одинаковые  c тем же что и созданный при добавлении в мапу.Получается что каждый раз при поиске будет создаваться новый обьект класса CustomerView!?!?!?
     }
 
 
-    public CustomerView updateCustomer(Customer customer, Customer customerNew) {
+    public CustomerDTO updateCustomer(Customer customer, Customer customerNew) {
         String key = extractKey(customer);
         if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
         }
-//        customerMap.put(key, customerNew);
-//        System.out.println("Изменены данные контрагента - " + customer +", новые данные " + customerNew);
-//        return new CustomerView(customerNew);
-//    }
+
         customerMap.put(key, customerNew);
         System.out.println("Изменены данные контрагента - " + customer);
         customer = customerMap.get(key);
         System.out.println(", новые данные " + customer);
-        return new CustomerView(customer);
+        return customerMapper.toDTO(customer);
     }
 
-    public CustomerView deleteCustomer(Customer customer) {
+    public CustomerDTO deleteCustomer(Customer customer) {
         String key = extractKey(customer);
         if (!customerMap.containsKey(key)) {
             throw new CustomerNotFoundException();
         }
         customer = customerMap.remove(key);
         System.out.println("Удален контрагент - " + customer);
-        return new CustomerView(customer);
+        return customerMapper.toDTO(customer);
     }
 
     public Map<String, Customer> printCustomerMap() {//Через Swager неработает данный метод

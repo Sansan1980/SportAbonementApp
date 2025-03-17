@@ -5,17 +5,21 @@ import java.util.List;
 import java.util.Objects;
 
 public class Employee {
-    private final long employeeId;
+    private  long employeeId;// пришлось убрать финал
     private static long employeeCounter;
     private String name;
     private String surname;
-    private Integer numberTelephone;
+    private long numberTelephone;
     private Accaunt accauntEmployee;
     private int salary;
     private Task tasks;
     private String commentary;
 
-    public Employee(String name, String surname, Integer numberTelephone) {
+    public Employee() {
+
+    }
+
+    public Employee(String name, String surname, long numberTelephone) {
         this.employeeId = employeeCounter++;
         this.numberTelephone = numberTelephone;
         this.name = name;
@@ -31,11 +35,11 @@ public class Employee {
         return employeeId;
     }
 
-    public Integer getNumberTelephone() {
+    public long getNumberTelephone() {
         return numberTelephone;
     }
 
-    public void setNumberTelephone(Integer numberTelephone) {
+    public void setNumberTelephone(long numberTelephone) {
         this.numberTelephone = numberTelephone;
     }
 

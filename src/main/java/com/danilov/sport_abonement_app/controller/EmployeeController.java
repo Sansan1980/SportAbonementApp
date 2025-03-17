@@ -1,6 +1,7 @@
 package com.danilov.sport_abonement_app.controller;
 
 import com.danilov.sport_abonement_app.model.Employee;
+import com.danilov.sport_abonement_app.model.dto.EmployeeDTO;
 import com.danilov.sport_abonement_app.model.dto.EmployeeView;
 import com.danilov.sport_abonement_app.service.employeeservice.EmployeeService;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
     @PostMapping("/aadEmployee")
-    public EmployeeView aadEmployee(@RequestBody Employee employee) {
+    public EmployeeDTO aadEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 //    @PostMapping("/aadEmployee")

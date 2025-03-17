@@ -5,14 +5,18 @@ import java.util.List;
 import java.util.Objects;
 
 public class Customer {
-    private final long customerId;
+    private long customerId;
     private static long customerCounter;
-    private final Accaunt accauntCustomer;
+    private  Accaunt accauntCustomer;
     private String name;
     private String surname;
     private long numberTelephone;
     private Task tasks;
     private String commentary;
+
+    public Customer() {
+
+    }
 
     public Customer(String name, String surname, long numberTelephone, Accaunt accaunt) {
         this.customerId = customerCounter++;

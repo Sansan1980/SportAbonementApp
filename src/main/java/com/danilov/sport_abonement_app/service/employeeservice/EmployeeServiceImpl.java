@@ -5,7 +5,9 @@ import com.danilov.sport_abonement_app.exception.employee_exception.EmployeeAllr
 import com.danilov.sport_abonement_app.exception.employee_exception.EmployeeNotFoundException;
 import com.danilov.sport_abonement_app.exception.employee_exception.EmployeeStorageIsFullException;
 import com.danilov.sport_abonement_app.model.Employee;
+import com.danilov.sport_abonement_app.model.dto.EmployeeDTO;
 import com.danilov.sport_abonement_app.model.dto.EmployeeView;
+import com.danilov.sport_abonement_app.service.mappers.EmployeeMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -15,12 +17,13 @@ import java.util.Map;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private Map<String, Employee> employeeMap = new HashMap<>();
+    private EmployeeMapper employeeMapper = new EmployeeMapper();
 
-    public Map<String, Employee> getEmployeeMap() {// почему без статик не работает он же паблик
-        return employeeMap;
-    }
+//    public Map<String, Employee> getEmployeeMap() {// почему без статик не работает он же паблик
+//        return employeeMap;
+//    }
 
-    public EmployeeView addEmployee(Employee employee) {
+    public EmployeeDTO addEmployee(Employee employee) {
         //добавить сюда валидацию string и Integer
         if (employeeMap.size() >= 10000) {
             throw new EmployeeStorageIsFullException();
@@ -35,7 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee = employeeMap.get(key);
         System.out.println("Введен новый контрагент -" + employee);
 
-        return new EmployeeView(employee);
+        return employeeMapper.toDTO(employee);
     }
 
     public EmployeeView findEmployee(Employee employee) {

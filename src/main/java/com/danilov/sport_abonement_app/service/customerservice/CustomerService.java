@@ -1,20 +1,18 @@
 package com.danilov.sport_abonement_app.service.customerservice;
 
 import com.danilov.sport_abonement_app.model.Customer;
-import com.danilov.sport_abonement_app.model.Employee;
-import com.danilov.sport_abonement_app.model.dto.CustomerView;
+import com.danilov.sport_abonement_app.model.dto.CustomerDTO;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public interface CustomerService {
-    CustomerView addCustomer(Customer customer);
+    CustomerDTO addCustomer(Customer customer);
 
-    CustomerView findCustomer(Customer customer);
+    CustomerDTO findCustomer(Customer customer);
 
-    CustomerView updateCustomer(Customer customer, Customer customerNew);
+    CustomerDTO updateCustomer(Customer customer, Customer customerNew);
 
-    CustomerView deleteCustomer(Customer customer);
+    CustomerDTO deleteCustomer(Customer customer);
 
     Map<String, Customer> printCustomerMap();
 }
